@@ -9,20 +9,21 @@
         margin: 0;
         padding: 0;
         overflow: hidden;
-        background-color: black; /* Fundo preto */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    .container {
-        position: relative;
-        width: 507px; /* Tamanho da imagem de fundo */
-        height: 502px; /* Tamanho da imagem de fundo */
         background-image: url('asset-3.png');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .container {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        background-image: url('asset-1.png');
+        background-size: cover;
     }
     .quadrado {
         width: 100%;
@@ -65,20 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let angle = (index * (360 / total)) * Math.PI / 180;
         let distance = 10;
 
-        const animation = setInterval(() => {
+        setInterval(() => {
             angle += 0.05;
             distance += 1;
             const x = startX + (distance * Math.cos(angle));
             const y = startY + (distance * Math.sin(angle));
-
-            // Verifica se o projetil ultrapassou os limites da imagem de fundo
-            if (x < 0 || x > container.offsetWidth || y < 0 || y > container.offsetHeight) {
-                clearInterval(animation); // Remove a animação do projetil
-                container.removeChild(projetil); // Remove o projetil do DOM
-            } else {
-                projetil.style.left = x + 'px';
-                projetil.style.top = y + 'px';
-            }
+            projetil.style.left = x + 'px';
+            projetil.style.top = y + 'px';
         }, 20);
     }
 
